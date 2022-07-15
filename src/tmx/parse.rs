@@ -863,12 +863,12 @@ impl Object {
                                     let x = i.next();
                                     let y = i.next();
                                     match (x, y) {
-                                        (Some(Ok(x)), Some(Ok(y))) => Ok(Vec2::new(x, y)),
+                                        (Some(std::result::Result::Ok(x)), Some(std::result::Result::Ok(y))) => Ok(Vec2::new(x, y)),
                                         _ => Err(anyhow!("invalid point")),
                                     }
                                 })
                                 .fold(Ok(Vec::new()), |vec, result| match vec {
-                                    Ok(mut vec) => {
+                                    std::result::Result::Ok(mut vec) => {
                                         vec.push(result?);
                                         Ok(vec)
                                     }

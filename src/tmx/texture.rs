@@ -7,7 +7,6 @@ use async_mutex::Mutex;
 #[cfg(feature = "plugin")]
 use bevy_asset::{Handle, LoadContext, LoadedAsset};
 #[cfg(feature = "plugin")]
-use bevy_render::texture::{Extent3d, Texture as BevyTexture, TextureDimension, TextureFormat};
 use image::{load_from_memory, GenericImage, RgbaImage};
 
 /// A shared image
@@ -28,7 +27,7 @@ enum Inner {
     },
     #[cfg(feature = "plugin")]
     Loaded {
-        handle: Handle<BevyTexture>,
+        handle: Handle<Texture>,
     },
 }
 
@@ -89,7 +88,9 @@ impl Texture {
     pub(crate) async fn load(
         &self,
         load_context: &mut LoadContext<'_>,
-    ) -> Result<Handle<BevyTexture>> {
+    ) -> Result<Handle<Texture>> {
+        use bevy_render::render_resource::{Extent3d, TextureDimension, TextureFormat};
+
         let mut data = self.data.lock().await;
 
         let handle = match &mut *data {
@@ -105,11 +106,11 @@ impl Texture {
 
                 load_context.set_labeled_asset(
                     self.label.as_ref(),
-                    LoadedAsset::new(BevyTexture::new(
+                    LoadedAsset::new(Texture::new(
                         Extent3d {
                             width: buffer.width(),
                             height: buffer.height(),
-                            depth: 1,
+                            depth_or_array_layers : 1
                         },
                         TextureDimension::D2,
                         buffer.into_raw(),
@@ -119,11 +120,11 @@ impl Texture {
             }
             Inner::Decoded { buffer } => load_context.set_labeled_asset(
                 self.label.as_ref(),
-                LoadedAsset::new(BevyTexture::new(
+                LoadedAsset::new(Texture::new(
                     Extent3d {
                         width: self.width,
                         height: self.height,
-                        depth: 1,
+                        depth_or_array_layers : 1
                     },
                     TextureDimension::D2,
                     std::mem::take(buffer).into_raw(),

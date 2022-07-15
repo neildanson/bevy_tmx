@@ -13,16 +13,12 @@ use bevy_ecs::{
 };
 use bevy_math::*;
 use bevy_reflect::{Reflect, TypeUuid};
-use bevy_render::{
-    color::Color,
-    draw::{Draw, Visible},
-    mesh::{Indices, Mesh},
-    pipeline::{PrimitiveTopology, RenderPipeline, RenderPipelines},
-    render_graph::base::MainPass,
-    texture::Texture,
-};
+
+use bevy_render::prelude::*;
+use bevy_render::render_phase::Draw;
+use bevy_render::render_resource::{Texture, RenderPipeline};
 use bevy_scene::Scene;
-use bevy_sprite::{ColorMaterial, Sprite, QUAD_HANDLE, SPRITE_PIPELINE_HANDLE};
+use bevy_sprite::prelude::*;
 use bevy_transform::components::{GlobalTransform, Transform};
 
 use crate::parallax::Parallax;

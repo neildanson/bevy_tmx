@@ -2,7 +2,7 @@ use std::path::{Component, Path, PathBuf};
 use std::sync::Arc;
 
 use anyhow::*;
-use bevy_app::{AppBuilder, Plugin};
+use bevy_app::{App, Plugin};
 use bevy_asset::{AddAsset, AssetLoader, BoxedFuture, LoadContext, LoadedAsset};
 use bevy_ecs::{
     system::IntoSystem,
@@ -81,7 +81,7 @@ impl TmxPlugin {
 }
 
 impl Plugin for TmxPlugin {
-    fn build(&self, app: &mut AppBuilder) {
+    fn build(&self, app: &mut App) {
         app.register_type::<ProtoSprite>();
         app.register_type::<Parallax>();
         app.add_asset::<Map>();

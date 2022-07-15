@@ -2,7 +2,7 @@
 name = "bevy_tmx"
 version = "0.2.0"
 authors = ["Bram Buurlage"]
-edition = "2018"
+edition = "2021"
 readme = "readme.md"
 description = "Scene loader for .tmx files created by the Tiled map editor"
 license = "MIT"
@@ -12,16 +12,16 @@ keywords = ["bevy", "tiled", "tmx", "scene", "asset"]
 categories = ["game-development"]
 
 [dependencies]
-bevy_app = { version = "0.5", optional = true }
-bevy_asset = { version = "0.5", optional = true }
-bevy_ecs = { version = "0.5", optional = true }
-bevy_render = { version = "0.5", optional = true }
-bevy_sprite = { version = "0.5", optional = true }
-bevy_transform = { version = "0.5", optional = true }
-bevy_scene = { version = "0.5", optional = true }
-bevy_reflect = "0.5"
-bevy_utils = "0.5"
-bevy_math = "0.5"
+bevy_app = { version = "0.7", optional = true }
+bevy_asset = { version = "0.7", optional = true }
+bevy_ecs = { version = "0.7", optional = true }
+bevy_render = { version = "0.7", optional = true }
+bevy_transform = { version = "0.7", optional = true }
+bevy_sprite = { version = "0.7", optional = true }
+bevy_scene = { version = "0.7", optional = true }
+bevy_reflect = "0.7"
+bevy_utils = "0.7"
+bevy_math = "0.7"
 anyhow = "1"
 xml-rs = "0.8"
 libflate = "1"
@@ -30,7 +30,7 @@ image = "0.23"
 async-mutex = "1"
 
 [dev-dependencies]
-bevy = "0.5"
+bevy = "0.7"
 
 [features]
 default = ["plugin"]
